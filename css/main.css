@@ -1,0 +1,290 @@
+@font-face {
+  font-family: "Jose";
+  src: url(../fonts/JosefinSans-Regular.ttf);
+}
+
+:root {
+  --bg-main: #fafafa;
+  --clr-done-text: #e4e5f1;
+  --clr-circle: #e4e5f1;
+  --clr-option: #9394a5;
+  --clr-hover-option: #484b6a;
+  --clr-hover-Clear: #484b6a;
+  --clr-text: #484b6a;
+  --clr-box: #fff;
+}
+
+.darkMode {
+  --bg-main: #161722;
+  --clr-done-text: #777a92;
+  --clr-circle: #777a92;
+  --clr-text: #e4e5f1;
+  --clr-box: #25273c;
+  --clr-hover-option: #e4e5f1;
+  --clr-hover-Clear: #cacde8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Jose", sans-serif;
+  background: var(--bg-main);
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+.flex-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.flex-space {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.flex-start {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.W-100 {
+  width: 100%;
+}
+
+.Box {
+  width: auto;
+  background: var(--clr-box);
+  border-radius: 5px;
+  padding: 2rem 1rem;
+  color: var(--clr-text);
+}
+
+.Box .Cross {
+  width: 1.1rem;
+  height: 1.1rem;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  display: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+.Box:hover .Cross {
+  display: inline;
+}
+
+.Circle {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid var(--clr-circle);
+  background: none;
+  margin: 0 1rem;
+}
+
+.Circle:hover {
+  border: 1px solid;
+  border-image-source: linear-gradient(137deg, #57ddff 0%, #c058f3 100%);
+  border-image-slice: 3;
+}
+
+.active {
+  color: #3a7bfd !important;
+  font-weight: 500 !important;
+}
+
+.check {
+  background: linear-gradient(137deg, #57ddff 0%, #c058f3 100%);
+  border: none;
+}
+
+.check::before {
+  width: 100%;
+  height: 100%;
+  content: url(../images/icon-check.svg);
+}
+
+.done {
+  text-decoration: line-through;
+  color: var(--clr-done-text);
+}
+
+.over {
+  border: 3px dotted var(--clr-text);
+}
+
+body {
+  height: 100%;
+  font-size: 18px;
+}
+
+body .Todo {
+  background: var(--bg-main);
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+body .Todo .bg-Todo {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+body .Todo .Main-Todo {
+  position: absolute;
+  z-index: 1;
+  width: 50%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  top: 8rem;
+}
+
+body .Todo .Main-Todo header {
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+body .Todo .Main-Todo header h1 {
+  letter-spacing: 1rem;
+  font-size: 2rem;
+}
+
+body .Todo .Main-Todo header #Theme {
+  border: none;
+  background: none;
+}
+
+body .Todo .Main-Todo header #Theme img {
+  width: 2rem;
+  height: 2rem;
+}
+
+body .Todo .Main-Todo main .inputgroup {
+  position: relative;
+  height: 5rem;
+  margin-bottom: 2rem;
+}
+
+body .Todo .Main-Todo main .inputgroup #input-Todo {
+  position: absolute;
+  width: 100%;
+  outline: none;
+  padding-left: 5rem;
+  left: 0;
+  font-size: 1.1rem;
+  color: var(--clr-text);
+  border: none;
+}
+
+body .Todo .Main-Todo main .inputgroup #input-Todo::-webkit-input-placeholder {
+  color: var(--clr-text);
+  font-size: 1.1rem;
+}
+
+body .Todo .Main-Todo main .inputgroup #input-Todo:-ms-input-placeholder {
+  color: var(--clr-text);
+  font-size: 1.1rem;
+}
+
+body .Todo .Main-Todo main .inputgroup #input-Todo::-ms-input-placeholder {
+  color: var(--clr-text);
+  font-size: 1.1rem;
+}
+
+body .Todo .Main-Todo main .inputgroup #input-Todo::placeholder {
+  color: var(--clr-text);
+  font-size: 1.1rem;
+}
+
+body .Todo .Main-Todo main .inputgroup .btn-input {
+  position: absolute;
+  left: 0;
+  width: 2rem;
+  height: 2rem;
+  z-index: 2;
+  display: block;
+  margin-left: 2rem;
+}
+
+body .Todo .Main-Todo main ul {
+  list-style: none;
+}
+
+body .Todo .Main-Todo main ul li {
+  margin: 0.3rem 0;
+}
+
+body .Todo .Main-Todo main ul .Options {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: var(--clr-option);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -webkit-transition: background 0s;
+  transition: background 0s;
+}
+
+body .Todo .Main-Todo main ul .Options a {
+  color: var(--clr-option);
+}
+
+body .Todo .Main-Todo main ul .Options #remain {
+  margin: 0 0.2rem;
+}
+
+body .Todo .Main-Todo main ul .Options .Filter .btn-Filter {
+  margin-right: 1rem;
+}
+
+body .Todo .Main-Todo main ul .Options .Clear:hover {
+  color: var(--clr-hover-Clear);
+}
+
+body .Todo .Main-Todo main ul .Options a:hover:not(.Clear) {
+  color: var(--clr-hover-option);
+  font-weight: 700;
+}
+
+body .Todo .Main-Todo footer {
+  margin: 3rem 0;
+}
+
+body .Todo .Main-Todo footer p {
+  color: var(--clr-option);
+}
+/*# sourceMappingURL=main.css.map */

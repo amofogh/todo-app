@@ -1,0 +1,78 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body class="">
+    <section class="Todo flex-center">
+      <img
+        src="images/bg-desktop-light.jpg"
+        alt="bg-desktop-light"
+        class="bg-Todo"
+      />
+      <section class="Main-Todo flex-space">
+        <header class="flex-space">
+          <h1>TODO</h1>
+          <button id="Theme">
+            <img src="images/icon-moon.svg" alt="moon" id="change-theme" />
+          </button>
+        </header>
+        <main>
+          <div class="inputgroup flex-center">
+            <button class="btn-input Circle" id="check-input"></button>
+            <input
+              type="text"
+              name="Get-job"
+              id="input-Todo"
+              class="Box"
+              placeholder="Create a new todo..."
+            />
+          </div>
+          <ul id="list">
+                       <!--  ---examples--- -->
+            <li class="Box flex-space" draggable="true">
+              <div class="flex-start">
+                <button class="Circle"></button>
+                <p>Complete Javascript</p>
+              </div>
+              <img src="images/icon-cross.svg" alt="Cross" class="Cross" />
+            </li> 
+            <li class="Box flex-space" draggable="true">
+              <div class="flex-start">
+                <button class="Circle Check"></button>
+                <p class="done">Serach for Javascript</p>
+              </div>
+              <img src="images/icon-cross.svg" alt="Cross" class="Cross" />
+            </li>-
+
+            <li class="Box Options flex-space">
+              <p><span id="remain">0</span>items left</p>
+              <div class="Filter">
+                <a href="#" id="all" class="btn-Filter active">All</a>
+                <a href="#" id="active" class="btn-Filter">Active</a>
+                <a href="#" id="completed" class="btn-Filter">Completed</a>
+              </div>
+              <a href="#" class="Clear" id="rem-completed">Clear Completed</a>
+            </li>
+          </ul>
+        </main>
+
+        <footer class="flex-center">
+          <p>Drag and drop to recorder list</p>
+        </footer>
+      </section>
+    </section>
+
+    <!-- <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"
+  ></script> -->
+    <script src="../../Js/jquery-3.6.0.min.js"></script>
+    <script src="js/darkMode.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>

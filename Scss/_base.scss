@@ -1,0 +1,46 @@
+// // variables mixin reset-class
+
+@font-face {
+  font-family: "Jose";
+  src: url(../fonts/JosefinSans-Regular.ttf);
+}
+
+:root {
+  --bg-main: #fafafa;
+  --clr-done-text: #e4e5f1;
+  --clr-circle: #e4e5f1;
+  --clr-option: #9394a5;
+  --clr-hover-option: #484b6a;
+  --clr-hover-Clear: #484b6a;
+  --clr-text: #484b6a;
+  --clr-box: #fff;
+}
+
+.darkMode {
+  --bg-main: #161722;
+  --clr-done-text: #777a92;
+  --clr-circle: #777a92;
+  --clr-text: #e4e5f1;
+  --clr-box: #25273c;
+  --clr-hover-option: #e4e5f1;
+  --clr-hover-Clear: #cacde8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  // changes
+  font-family: "Jose", sans-serif;
+  background: var(--bg-main);
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
