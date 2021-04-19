@@ -98,23 +98,35 @@ a {
   color: #fff;
 }
 
+@media (max-width: 960px) {
+  .Box .Cross {
+    display: inline;
+  }
+}
+
 .Box:hover .Cross {
   display: inline;
 }
 
+.Box div p {
+  width: 90%;
+}
+
 .Circle {
-  width: 2rem;
-  height: 2rem;
+  min-width: 2rem;
+  min-height: 2rem;
   border-radius: 50%;
   border: 1px solid var(--clr-circle);
   background: none;
   margin: 0 1rem;
 }
 
-.Circle:hover {
-  border: 1px solid;
-  border-image-source: linear-gradient(137deg, #57ddff 0%, #c058f3 100%);
-  border-image-slice: 3;
+.Circle-hover:hover {
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: linear-gradient(to right, var(--clr-box), var(--clr-box)), linear-gradient(137deg, #57ddff 0%, #c058f3 100%);
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
 }
 
 .active {
@@ -162,6 +174,12 @@ body .Todo .bg-Todo {
   z-index: 0;
 }
 
+@media (max-width: 960px) {
+  body .Todo .bg-Todo {
+    height: 19rem;
+  }
+}
+
 body .Todo .Main-Todo {
   position: absolute;
   z-index: 1;
@@ -171,6 +189,12 @@ body .Todo .Main-Todo {
       -ms-flex-direction: column;
           flex-direction: column;
   top: 8rem;
+}
+
+@media (max-width: 960px) {
+  body .Todo .Main-Todo {
+    width: 95%;
+  }
 }
 
 body .Todo .Main-Todo header {
@@ -210,6 +234,12 @@ body .Todo .Main-Todo main .inputgroup #input-Todo {
   border: none;
 }
 
+@media (max-width: 960px) {
+  body .Todo .Main-Todo main .inputgroup #input-Todo {
+    height: 2rem;
+  }
+}
+
 body .Todo .Main-Todo main .inputgroup #input-Todo::-webkit-input-placeholder {
   color: var(--clr-text);
   font-size: 1.1rem;
@@ -230,6 +260,21 @@ body .Todo .Main-Todo main .inputgroup #input-Todo::placeholder {
   font-size: 1.1rem;
 }
 
+@media (max-width: 960px) {
+  body .Todo .Main-Todo main .inputgroup #input-Todo::-webkit-input-placeholder {
+    font-size: 1rem;
+  }
+  body .Todo .Main-Todo main .inputgroup #input-Todo:-ms-input-placeholder {
+    font-size: 1rem;
+  }
+  body .Todo .Main-Todo main .inputgroup #input-Todo::-ms-input-placeholder {
+    font-size: 1rem;
+  }
+  body .Todo .Main-Todo main .inputgroup #input-Todo::placeholder {
+    font-size: 1rem;
+  }
+}
+
 body .Todo .Main-Todo main .inputgroup .btn-input {
   position: absolute;
   left: 0;
@@ -246,6 +291,28 @@ body .Todo .Main-Todo main ul {
 
 body .Todo .Main-Todo main ul li {
   margin: 0.3rem 0;
+}
+
+body .Todo .Main-Todo main ul .filter-md {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  body .Todo .Main-Todo main ul .filter-md {
+    display: block;
+  }
+}
+
+@media (max-width: 960px) {
+  body .Todo .Main-Todo main ul .filter-lg {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: space-evenly;
+        -ms-flex-pack: space-evenly;
+            justify-content: space-evenly;
+    width: 100%;
+  }
 }
 
 body .Todo .Main-Todo main ul .Options {

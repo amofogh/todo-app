@@ -35,30 +35,45 @@
     display: none;
     cursor: pointer;
     color: #fff;
+    @media (max-width: "960px") {
+      display: inline;
+    }
   }
 
-  &:hover .Cross{
-      display: inline;
+  &:hover .Cross {
+    display: inline;
+  }
+  div {
+    p {
+      width: 90%;
+    }
   }
 }
 
 .Circle {
-  width: 2rem;
-  height: 2rem;
+  min-width: 2rem;
+  min-height: 2rem;
   border-radius: 50%;
   border: 1px solid var(--clr-circle);
   background: none;
   margin: 0 1rem;
+}
 
+.Circle-hover {
   &:hover {
-    // gradient in circles
-    border: 1px solid;
-    border-image-source: linear-gradient(
-      137deg,
-      rgba(87, 221, 255, 1) 0%,
-      rgba(192, 88, 243, 1) 100%
-    );
-    border-image-slice: 3;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    background: 
+      // bg
+      linear-gradient(to right, var(--clr-box), var(--clr-box)),
+      // border
+      linear-gradient(
+          137deg,
+          rgba(87, 221, 255, 1) 0%,
+          rgba(192, 88, 243, 1) 100%
+        );
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
   }
 }
 
@@ -87,6 +102,6 @@
   color: var(--clr-done-text);
 }
 
-.over{
+.over {
   border: 3px dotted var(--clr-text);
 }

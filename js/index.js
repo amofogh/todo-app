@@ -5,7 +5,6 @@ Check.forEach((item) => {
   item.addEventListener("click", () => {
     item.classList.toggle("Check");
     item.nextElementSibling.classList.toggle("done");
-    console.log(item.classList.toggle("n"));
   });
 });
 
@@ -29,6 +28,26 @@ getItem.addEventListener("keypress", (event) => {
   }
 });
 
+// hover for border gradient in input
+
+const btnInput = document.querySelector(".btn-input");
+btnInput.addEventListener("mouseover", () => {
+  let classesItem = btnInput.classList.value;
+  let findCheck = classesItem.search("Check");
+  if (findCheck == -1) {
+    btnInput.classList.add("Circle-hover");
+  }
+});
+// remove hover class when mouse out in input
+btnInput.addEventListener("mouseleave", () => {
+  let classesItem = btnInput.classList.value;
+  let findHover = classesItem.search("Circle-hover");
+
+  if (findHover != -1) {
+    btnInput.classList.remove("Circle-hover");
+  }
+});
+
 const addItem = () => {
   let item = getItem.value;
 
@@ -37,7 +56,10 @@ const addItem = () => {
 };
 
 // create element in list
-const CreateItemList = (inputValue) => {
+const CreateItemList = (Value) => {
+  // set to localstorage
+  saveItems(Value);
+
   let li = document.createElement("li");
   li.classList.add("Box", "flex-space");
 
@@ -50,7 +72,27 @@ const CreateItemList = (inputValue) => {
   let button = document.createElement("button");
   button.classList.add("Circle");
   let p = document.createElement("p");
-  p.textContent = inputValue;
+  p.textContent = Value;
+
+  // hover for border gradient in circle
+
+  button.addEventListener("mouseover", () => {
+    let classesItem = button.classList.value;
+    let findCheck = classesItem.search("Check");
+    if (findCheck == -1) {
+      button.classList.add("Circle-hover");
+    }
+  });
+
+  // remove hover class when mouse out
+  button.addEventListener("mouseleave", () => {
+    let classesItem = button.classList.value;
+    let findHover = classesItem.search("Circle-hover");
+
+    if (findHover != -1) {
+      button.classList.remove("Circle-hover");
+    }
+  });
 
   // for more inf go to checkInput()
   if (checkInput() == true) {
@@ -70,6 +112,11 @@ const CreateItemList = (inputValue) => {
   img.classList.add("Cross");
   li.appendChild(img);
 
+  // remove with X
+  img.addEventListener("click", () => {
+    img.parentElement.remove();
+  });
+
   // add to ul
   let ul = document.querySelector("#list");
   ul.prepend(li);
@@ -83,10 +130,6 @@ const CreateItemList = (inputValue) => {
     } else if (changes == false) {
       CounterPlus("+");
     }
-  });
-
-  img.addEventListener("click", () => {
-    img.parentElement.remove();
   });
 };
 
@@ -220,7 +263,83 @@ function CounterPlus(sign) {
   remain.textContent = parseInt(activeCounter);
 }
 
-// set coockie for remain all tasks in list for 24 hr
+// change filter btns in screen
+const windowWidth = window.innerWidth;
 
-// drag and drop for changing the according of items
+let filterLg = document.querySelector(".filter-lg");
+let filterMd = document.querySelector(".filter-md");
+let remainItem = document.querySelector(".remain-item");
 
+if (windowWidth <= 960) {
+  filterMd.appendChild(filterLg);
+} else if (windowWidth > 960) {
+  remainItem.after(filterLg);
+}
+
+// event for resize
+const Xl = window.matchMedia("(max-width: 960px)");
+const XXl = window.matchMedia("(min-width: 960.1px)");
+
+window.addEventListener("resize", () => {
+  let filterLg = document.querySelector(".filter-lg");
+  let filterMd = document.querySelector(".filter-md");
+  let remainItem = document.querySelector(".remain-item");
+
+  if (Xl.matches) {
+    filterMd.appendChild(filterLg);
+  } else if (XXl.matches) {
+    remainItem.after(filterLg);
+  }
+});
+
+// ? drag and drop for changing the according of items
+
+// set local storage for remain all tasks in list for 24 hr
+
+const saveItems = (item) => {
+  // check for duplicate
+  if (localStorage.getItem(item) == null) {
+    localStorage.setItem(item, item);
+    let Time = new Date();
+    let Today =
+      Time.getFullYear() + "-" + Time.getMonth() + "-" + Time.getDay();
+    // ! set data for today
+    appendToLocalstorage(Today, item);
+  }
+};
+
+const appendToLocalstorage = (name, data) => {
+  let old = localStorage.getItem(name);
+  const mydata = [];
+
+  //this for white space or ","
+  if (old != null || old != undefined) {
+    old = old.split(",");
+  } // this for null error
+  else if (old == null || old == undefined) {
+    old = [];
+  }
+  // add all data to one variable
+  mydata.push(...old);
+  mydata.push(data);
+
+  // add all to name
+  localStorage.setItem(name, mydata);
+};
+
+// add all items when page reloaded
+let Time = new Date();
+let Today = Time.getFullYear() + "-" + Time.getMonth() + "-" + Time.getDay();
+
+let itemsSaved = localStorage.getItem(Today);
+if (itemsSaved != null) {
+  for (i of itemsSaved.split(",")) {
+    CreateItemList(i);
+  }
+}
+
+// btn for clear all saved
+
+// clear items been deleted by X
+
+// items with check
