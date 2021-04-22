@@ -51,15 +51,26 @@ btnInput.addEventListener("mouseleave", () => {
 const addItem = () => {
   let item = getItem.value;
 
-  CreateItemList(item);
+  checkInput(item);
   getItem.value = "";
 };
 
 // create element in list
-const CreateItemList = (Value) => {
+const CreateItemList = (Value, check) => {
   // set to localstorage
-  saveItems(Value);
+  // saveItems(Value);
+  let checkitem;
+  if (check == true) {
+    checkitem = true;
+  } else {
+    checkitem = false;
+  }
+  saveItems({
+    item: Value,
+    check: checkitem,
+  });
 
+  // li
   let li = document.createElement("li");
   li.classList.add("Box", "flex-space");
 
@@ -95,7 +106,7 @@ const CreateItemList = (Value) => {
   });
 
   // for more inf go to checkInput()
-  if (checkInput() == true) {
+  if (check == true) {
     button.classList.add("Check");
     p.classList.add("done");
   } else {
@@ -133,8 +144,8 @@ const CreateItemList = (Value) => {
   });
 };
 
-// check in check-input button is on or off
-const checkInput = () => {
+// check in check-input button is on or off and send to create item
+const checkInput = (item) => {
   const CheckToggle = document.querySelector("#check-input");
 
   let classes = CheckToggle.classList;
@@ -144,9 +155,8 @@ const checkInput = () => {
       Check = true;
     }
   }
-  return Check;
+  CreateItemList(item, Check);
 };
-
 // hide all the li's with check for show active / completed or remove all completed
 const optionWorks = (Work) => {
   let items = document.querySelectorAll(".Circle:not(#check-input)");
@@ -296,50 +306,57 @@ window.addEventListener("resize", () => {
 
 // set local storage for remain all tasks in list for 24 hr
 
-const saveItems = (item) => {
+const saveItems = (data) => {
   // check for duplicate
-  if (localStorage.getItem(item) == null) {
-    localStorage.setItem(item, item);
+  if (localStorage.getItem(data.item) == null) {
+    localStorage.setItem(data.item, JSON.stringify(data));
     let Time = new Date();
     let Today =
-      Time.getFullYear() + "-" + Time.getMonth() + "-" + Time.getDay();
-    // ! set data for today
-    appendToLocalstorage(Today, item);
+      Time.getFullYear() + "-" + (Time.getMonth() + 1) + "-" + Time.getDate();
+    // set data for today
+    appendToLocalstorage(Today, data);
   }
 };
 
+// append items to today
 const appendToLocalstorage = (name, data) => {
+  // get old items to set with new item
   let old = localStorage.getItem(name);
   const mydata = [];
 
   //this for white space or ","
   if (old != null || old != undefined) {
-    old = old.split(",");
+    old = JSON.parse(old);
+    for (var i of old) {
+      mydata.push(i);
+    }
   } // this for null error
   else if (old == null || old == undefined) {
-    old = [];
+    old = {};
   }
   // add all data to one variable
-  mydata.push(...old);
-  mydata.push(data);
+  mydata.push(JSON.stringify(data));
 
   // add all to name
-  localStorage.setItem(name, mydata);
+  localStorage.setItem(name, JSON.stringify(mydata));
 };
 
-// add all items when page reloaded
+// load items on reload the page with check
 let Time = new Date();
-let Today = Time.getFullYear() + "-" + Time.getMonth() + "-" + Time.getDay();
+let Today =
+  Time.getFullYear() + "-" + (Time.getMonth() + 1) + "-" + Time.getDate();
 
 let itemsSaved = localStorage.getItem(Today);
-if (itemsSaved != null) {
-  for (i of itemsSaved.split(",")) {
-    CreateItemList(i);
-  }
+let itemsObj = JSON.parse(itemsSaved);
+// convert str to obj
+for (i in itemsObj) {
+  let a = JSON.parse(itemsObj[i]);
+  // console.log(a.check);
+  let check = a.check;
+  let item = a.item;
+  CreateItemList(item, check);
 }
 
-// btn for clear all saved
+// ? clear items been deleted by X
 
-// clear items been deleted by X
-
-// items with check
+// ? btn for clear all saved

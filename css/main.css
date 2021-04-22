@@ -349,9 +349,14 @@ body .Todo .Main-Todo main ul .Options a:hover:not(.Clear) {
 
 body .Todo .Main-Todo footer {
   margin: 3rem 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 body .Todo .Main-Todo footer p {
   color: var(--clr-option);
+  margin-bottom: 1rem;
 }
 /*# sourceMappingURL=main.css.map */
