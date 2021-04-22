@@ -116,7 +116,7 @@ const CreateItemList = (Value, check) => {
   div.appendChild(button);
   div.appendChild(p);
 
-  // img
+  // img (X)
   let img = document.createElement("img");
   img.setAttribute("src", "images/icon-cross.svg");
   img.setAttribute("alt", "Cross");
@@ -126,6 +126,8 @@ const CreateItemList = (Value, check) => {
   // remove with X
   img.addEventListener("click", () => {
     img.parentElement.remove();
+    let itemName = img.previousSibling.childNodes[1].textContent;
+    removeFromLS(itemName);
   });
 
   // add to ul
@@ -242,6 +244,7 @@ const remCompleted = document.querySelector("#rem-completed");
 
 remCompleted.addEventListener("click", function (event) {
   event.preventDefault();
+  clearCompleteInLS();
   optionWorks("remove");
 });
 
@@ -351,12 +354,77 @@ let itemsObj = JSON.parse(itemsSaved);
 // convert str to obj
 for (i in itemsObj) {
   let a = JSON.parse(itemsObj[i]);
-  // console.log(a.check);
   let check = a.check;
   let item = a.item;
   CreateItemList(item, check);
 }
 
-// ? clear items been deleted by X
+// clear items been deleted by X
 
-// ? btn for clear all saved
+function removeFromLS(item) {
+  // check the specific item in hole list and save another itmes without the specific item
+  let Time = new Date();
+  let Today =
+    Time.getFullYear() + "-" + (Time.getMonth() + 1) + "-" + Time.getDate();
+
+  let old = localStorage.getItem(Today);
+
+  let mydata = [];
+
+  //this for white space or ","
+  if (old != null || old != undefined) {
+    old = JSON.parse(old);
+    for (var i of old) {
+      let target = i.match('item":"(.*?)"');
+      if (target[1] == item) {
+        continue;
+      } else {
+        mydata.push(i);
+      }
+    }
+  } // this for null error
+  else if (old == null || old == undefined) {
+    old = {};
+  }
+
+  // add all to name
+  localStorage.setItem(Today, JSON.stringify(mydata));
+}
+
+// clear all completed from localstroage when clicked on clear completed
+
+// find items with check true and add false checks to localstorage
+function clearCompleteInLS() {
+  let Time = new Date();
+  let Today =
+    Time.getFullYear() + "-" + (Time.getMonth() + 1) + "-" + Time.getDate();
+
+  let todayItems = localStorage.getItem(Today);
+  let mydata = [];
+
+  if (todayItems != null || todayItems != undefined) {
+    let All = JSON.parse(todayItems);
+    for (i of All) {
+      let findComplete = i.match('"check":(.*)}');
+      if (findComplete[1] == "true") {
+        continue;
+      } else {
+        mydata.push(i);
+      }
+    }
+  } else if (todayItems == null || todayItems == undefined) {
+    alert("u have none");
+  }
+
+  localStorage.setItem(Today, JSON.stringify(mydata));
+}
+
+// btn for clear all saved
+
+function clearAllToday() {
+  let Time = new Date();
+  let Today =
+    Time.getFullYear() + "-" + (Time.getMonth() + 1) + "-" + Time.getDate();
+
+  localStorage.removeItem(Today);
+}

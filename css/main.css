@@ -359,4 +359,15 @@ body .Todo .Main-Todo footer p {
   color: var(--clr-option);
   margin-bottom: 1rem;
 }
+
+body .Todo .Main-Todo footer .rm-saved {
+  text-align: left;
+  color: #3a7bfd;
+  -webkit-transition: color .2s ease;
+  transition: color .2s ease;
+}
+
+body .Todo .Main-Todo footer .rm-saved:hover {
+  color: var(--clr-option);
+}
 /*# sourceMappingURL=main.css.map */

@@ -146,6 +146,16 @@ body {
           color: var(--clr-option);
           margin-bottom: 1rem;
         }
+
+        .rm-saved{
+          text-align: left;
+            color: #3a7bfd;
+            transition: color .2s ease;
+
+          &:hover{
+            color: var(--clr-option);
+          }
+        }
       }
     }
   }
