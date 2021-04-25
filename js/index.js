@@ -55,6 +55,7 @@ const addItem = () => {
   getItem.value = "";
 };
 
+let idCounter = 1;
 // create element in list
 const CreateItemList = (Value, check) => {
   // set to localstorage
@@ -73,6 +74,8 @@ const CreateItemList = (Value, check) => {
   // li
   let li = document.createElement("li");
   li.classList.add("Box", "flex-space");
+  li.setAttribute("id", idCounter);
+  idCounter++;
 
   // div
   let div = document.createElement("div");
@@ -128,6 +131,7 @@ const CreateItemList = (Value, check) => {
     img.parentElement.remove();
     let itemName = img.previousSibling.childNodes[1].textContent;
     removeFromLS(itemName);
+    idCounter--;
   });
 
   // add to ul
@@ -144,6 +148,12 @@ const CreateItemList = (Value, check) => {
       CounterPlus("+");
     }
   });
+
+  //drag and drop eventlistener
+  li.setAttribute("draggable", true);
+  li.addEventListener("dragstart", dragStart);
+  li.addEventListener("dragover", dragOver);
+  li.addEventListener("drop", drop);
 };
 
 // check in check-input button is on or off and send to create item
@@ -304,8 +314,6 @@ window.addEventListener("resize", () => {
     remainItem.after(filterLg);
   }
 });
-
-// ? drag and drop for changing the according of items
 
 // set local storage for remain all tasks in list for 24 hr
 
