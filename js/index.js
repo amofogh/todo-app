@@ -55,7 +55,6 @@ const addItem = () => {
   getItem.value = "";
 };
 
-let idCounter = 1;
 // create element in list
 const CreateItemList = (Value, check) => {
   // set to localstorage
@@ -74,8 +73,6 @@ const CreateItemList = (Value, check) => {
   // li
   let li = document.createElement("li");
   li.classList.add("Box", "flex-space");
-  li.setAttribute("id", idCounter);
-  idCounter++;
 
   // div
   let div = document.createElement("div");
@@ -131,7 +128,6 @@ const CreateItemList = (Value, check) => {
     img.parentElement.remove();
     let itemName = img.previousSibling.childNodes[1].textContent;
     removeFromLS(itemName);
-    idCounter--;
   });
 
   // add to ul
